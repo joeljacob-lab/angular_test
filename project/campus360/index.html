@@ -24,12 +24,14 @@
 
     <h2>Student List</h2>
     <button ng-click="showstudents=!showstudents"> show/hide students </button>
-    <ul ng-show="showstudents">
-        <li ng-repeat="student in students">
-            {{student}}
-        </li>
-    </ul>
 
+    <div ng-if="showDashboard=!showDashboard">
+        <ul ng-hide="showstudents">
+            <li ng-repeat="student in students">
+                {{student}}
+            </li>
+        </ul>
+    </div>
 
 </body>
 
