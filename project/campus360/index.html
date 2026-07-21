@@ -11,9 +11,8 @@
 
 <body ng-controller="dashboardController">
 
-    <h1>{{collegename}}</h1>
     <input type="text" ng-model="collegename">
-    
+    <h1>{{collegename}}</h1>
 
     <input type="text" ng-model="totalstudents">
     <p>Total Students : {{totalstudents}}</p>
@@ -21,13 +20,15 @@
 
     <input type="text" ng-model="totalfaculty">
     <p>Total Faculty : {{totalfaculty}}</p>
+    <button ng-click="totalfaculty=totalfaculty+1">Add Faculty</button><br><br>
+
     <h2>Student List</h2>
-    <ul>
+    <button ng-click="showstudents=!showstudents"> show/hide students </button>
+    <ul ng-show="showstudents">
         <li ng-repeat="student in students">
             {{student}}
         </li>
     </ul>
-    <button ng-click="totalfaculty=totalfaculty+1">Add Faculty</button><br><br>
 
 
 </body>

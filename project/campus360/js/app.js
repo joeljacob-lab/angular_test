@@ -15,9 +15,14 @@ app.controller('dashboardController', function ($scope) {
         "Shahid","John","Allen","Shaun"
     ]
 
-    $scope.addStudent=function(){
+    $scope.addStudent=function()
+    
+    {
 
         $scope.totalstudents++
+
+
+        $scope.showstudents=true
     }
 
     
