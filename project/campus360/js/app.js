@@ -23,7 +23,6 @@ app.controller('dashboardController', function ($scope) {
 
 
         $scope.showstudents=true
-        $scope.showDashboard=true
     }
 
     
