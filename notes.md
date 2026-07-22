@@ -32,4 +32,4 @@ supabase,firebase,mariaDB,cockroachDB
 
 
 22/7
-Pagination
+Paginations 
