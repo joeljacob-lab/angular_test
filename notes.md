@@ -29,3 +29,7 @@ ng-binding(data binding)
 
 Databases:
 supabase,firebase,mariaDB,cockroachDB
+
+
+22/7
+Pagination
