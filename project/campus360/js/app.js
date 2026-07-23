@@ -1,19 +1,48 @@
-console.log("app.js loaded");
-
 var app = angular.module("campus360", []);
 
-app.controller("dashboardController", function ($scope) {
-  $scope.collegename = "FISAT";
-  $scope.totalstudents = 1200;
-  $scope.totalfaculty = 85;
+app.controller("dashboardcontroller", function ($scope) {
+    $scope.collegename = "FisaT";
+    $scope.totstu = 500;
+    $scope.totfac = 49;
+    $scope.showstulist = true;
+    $scope.newStudentName = "";
+    console.log("Dashboard controller is loaded.");
 
-  console.log("dashboard controller is loaded");
+    $scope.students = [
+        "Adrian", "Goutham", "Unnithan", "Josin"
+    ];
 
-  $scope.students = ["Shahid", "John", "Allen", "Shaun"];
+    $scope.addStudent = function () {
+        if ($scope.newStudentName && $scope.newStudentName.trim()) {
+            $scope.students.push($scope.newStudentName.trim());
+            $scope.newStudentName = "";
+        }
 
-  $scope.addStudent = function () {
-    $scope.totalstudents++;
+        $scope.totstu++;
+        $scope.showstulist = true;
+    };
 
-    $scope.showstudents = true;
-  };
+    $scope.addFaculty = function () {
+        $scope.totfac++;
+    };
+
+    $scope.fees = 25000;
+    $scope.today = new Date();
+
+    $scope.departments = [
+        "CSE", "MCA", "MBA", "ECE", "EEE"
+    ];
+
+    $scope.selectedDepartments = "MCA";
+
+    $scope.isDisable = true;
+
+    $scope.allowAdmission = function () {
+        $scope.isDisable = false;
+    };
+
+    $scope.isReadOnly = true;
+    $scope.toggleReadyOnly = function () {
+        $scope.isReadOnly = !$scope.isReadOnly;
+    };
 });

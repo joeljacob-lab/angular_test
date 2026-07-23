@@ -1,46 +1,124 @@
-<!doctype html>
+<!DOCTYPE html>
 <html ng-app="campus360">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>College Dashboard</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="node_modules/angular/angular.min.js"></script>
     <script src="js/app.js"></script>
-    <title>Campus360 Dashboard</title>
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
+</head>
 
-  <body ng-controller="dashboardController">
+<body ng-controller="dashboardcontroller">
+
+
     <h1>{{collegename}}</h1>
-    <label>College:</label>
-    <input type="text" ng-model="collegename" />
+    <input type="text" ng-model="collegename">
 
-    <hr />
 
-    <p ng-class="{'green': totalstudents > 1000, 'red': totalstudents < 1000}">
-      Students: {{totalstudents}}
-    </p>
+    <h1 ng-class="{
+        'green': totstu > 1000,
+        'red': totstu < 100,
+        'blue': totstu >= 100 && totstu <= 1000
+    }">
+        Total Students: {{totstu}}
+    </h1>
 
-    <input type="number" ng-model="totalstudents" />
-    <button ng-click="totalstudents = totalstudents + 1">+</button>
+    <input type="number" ng-model="totstu">
+    <button ng-click="addStudent()">Add Student</button>
 
-    <p ng-class="{'green': totalfaculty > 100, 'red': totalfaculty < 100}">
-      Faculty: {{totalfaculty}}
-    </p>
-    <input type="number" ng-model="totalfaculty" />
-    <button ng-click="totalfaculty = totalfaculty + 1">+</button>
 
-    <hr />
 
-    <h3>Students</h3>
+    <h1 ng-style="{
+        'color':totfac>=100 ? 'green':'red',
+        'font-size':'25px',
+        'font-weight':'bold'
+    }">Total Faculty: {{totfac}}</h1>
+
+    <input type="number" ng-model="totfac">
+    <button ng-click="totfac = totfac + 1">
+        Add Faculty
     </button>
-    <button ng-click="showstudents = !showstudents">
-      {{ showstudents ? 'Hide' : 'Show' }}
+    <h2>Student List</h2>
+
+    <button ng-click="showstulist = !showstulist">
+        {{showstulist ? 'Hide List' : 'Show List'}}
     </button>
-    
 
-    <ul ng-show="showstudents">
-      <li ng-repeat="student in students">{{student}}</li>
-
+    <ul ng-show="showstulist">
+        <li ng-repeat="student in students">
+            {{student}}
+        </li>
     </ul>
-  </body>
+    <hr>
+    <h2>Filter Demo</h2>
+    <p>Uppercase: {{collegename | uppercase}}</p>
+    <p>Lowercase: {{collegename | lowercase}}</p>
+    <p>Currency: {{fees | currency}}</p>
+    <p>Date: {{today | date}}</p>
+    <p>Number: {{fees | number:5}}</p>
+    <hr>
+
+    <h2>Selected Departments</h2>
+    <label for="">Select Department</label>
+    <br><br>
+    <select name="" ng-model="selectedDepartments" ng-options="department for department in departments" id=""></select>
+    <p>Selected Department:{{selectedDepartments}}</p>
+
+    <hr>
+    <h2>Department Info</h2>
+    <div ng-switch="selectedDepartments">
+        <div ng-switch-when="CSE">
+            <h3>Computer Science and Engineering</h3>
+            <p>Department of CSE is one of the most sought after admissions at FISAT</p>
+        </div>
+        <div ng-switch-when="MCA">
+            <h3>Master of Computer Applications</h3>
+            <p>Department of MCA is one of the most sought after admissions at FISAT</p>
+        </div>
+        <div ng-switch-when="MBA">
+            <h3>Master of Business Administration</h3>
+            <p>Department of MBA is one of the most sought after admissions at FISAT</p>
+        </div>
+        <div ng-switch-when="EEE">
+            <h3>Electronics and Electrical Engineering</h3>
+            <p>Department of EEE is one of the most sought after admissions at FISAT</p>
+        </div>
+        <div ng-switch-when="ECE">
+            <h3>Electronics and Computer Engineering</h3>
+            <p>Department of ECE is one of the most sought after admissions at FISAT</p>
+        </div>
+        <div ng-switch-default>
+            <h3>Please select a Department</h3>
+        </div>
+    </div>
+    <hr>
+    <h2>ng-init demo</h2>
+    <div ng-init="collegecode='fisat123';location='Angamaly'">
+        <p>College code: {{collegecode}}</p>
+        <p>Location: {{location}}</p>
+    </div>
+
+    <hr>
+
+    <h2>ng disable demo</h2>
+    <button ng-click="allowAdmission()">Enable Admission</button>
+    <br><br>
+    <button ng-disabled="isDisable">Take Admission</button>
+    <hr>
+    <h2>ng-readonly</h2>
+    <label for="">College ID</label>
+    <br><br>
+    <input type="text" ng-model="" ng-readonly="isReadOnly">
+    <br><br>
+    <button ng-click="isReadOnly=!isReadOnly">toggle readonly</button>
+    <p>Readonly Status: {{isReadOnly}}</p>
+
+
+</body>
+
 </html>
