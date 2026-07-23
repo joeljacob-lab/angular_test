@@ -1,48 +1,29 @@
 var app = angular.module("campus360", []);
 
-app.controller("dashboardcontroller", function ($scope) {
-    $scope.collegename = "FisaT";
-    $scope.totstu = 500;
-    $scope.totfac = 49;
-    $scope.showstulist = true;
-    $scope.newStudentName = "";
-    console.log("Dashboard controller is loaded.");
+app.controller("dashboardController", function ($scope) {
+  $scope.collegename = "FISAT";
+  $scope.collegeId = "FISAT-2026";
+  $scope.totalstudents = 1200;
+  $scope.totalfaculty = 85;
 
-    $scope.students = [
-        "Adrian", "Goutham", "Unnithan", "Josin"
-    ];
+  $scope.students = ["Shahid", "John", "Allen", "Shaun"];
+  $scope.showstudents = true;
 
-    $scope.addStudent = function () {
-        if ($scope.newStudentName && $scope.newStudentName.trim()) {
-            $scope.students.push($scope.newStudentName.trim());
-            $scope.newStudentName = "";
-        }
+  $scope.fees = 2500;
+  $scope.today = new Date();
 
-        $scope.totstu++;
-        $scope.showstulist = true;
-    };
+  $scope.departments = ["CSE", "MCA", "MBA", "EEE", "ECE"];
+  $scope.selectedDepartment = "CSE";
 
-    $scope.addFaculty = function () {
-        $scope.totfac++;
-    };
+  // Actions
+  $scope.addStudent = function () {
+    $scope.totalstudents++;
+  };
 
-    $scope.fees = 25000;
-    $scope.today = new Date();
+  $scope.isDisable = true;
+  $scope.isReadOnly = true;
 
-    $scope.departments = [
-        "CSE", "MCA", "MBA", "ECE", "EEE"
-    ];
-
-    $scope.selectedDepartments = "MCA";
-
-    $scope.isDisable = true;
-
-    $scope.allowAdmission = function () {
-        $scope.isDisable = false;
-    };
-
-    $scope.isReadOnly = true;
-    $scope.toggleReadyOnly = function () {
-        $scope.isReadOnly = !$scope.isReadOnly;
-    };
+  $scope.allowAdmission = function () {
+    $scope.isDisable = !$scope.isDisable;
+  };
 });
